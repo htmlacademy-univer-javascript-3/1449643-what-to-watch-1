@@ -1,35 +1,44 @@
-import MainPage from '../../pages/main-page/main-page';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MyListScreen from '../../pages/my-list-page/my-list-page';
-import AuthorizationScreen from '../../pages/authorization-page/authorization-page';
-import MoviePageScreen from '../../pages/film-page/film-page';
-import AddReviewScreen from '../../pages/add-review-page/add-review-page';
-import PlayerScreen from '../../pages/player-page/player-page';
-import NotFoundScreen from '../../pages/not-found-page/not-found-page';
+import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import AuthorizationPage from '../../pages/authorization-page/authorization-page';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Films } from '../../types/films';
+import MainPage from '../../pages/main-page/main-page';
+import FilmPage from '../../pages/film-page/film-page';
+import MyListPage from '../../pages/my-list-page/my-list-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import PlayerPage from '../../pages/player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
+import { Reviews } from '../../types/reviews';
 
-type MainProp = {
-  title: string;
-  genre: string;
-  year: number;
+
+type MainPageProp = {
+  films: Films[];
+  reviews: Reviews[];
+  myFilms: Films[];
 }
 
-function App({title, genre, year}: MainProp): JSX.Element {
+
+function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element = {<MainPage title={title} genre={genre} year={year}/>}
+          element = {
+            <MainPage
+              films={films}
+              myFilms={myFilms}
+            />
+          }
         />
         <Route
           path={AppRoute.SignIn}
-          element={<AuthorizationScreen />}
+          element={<AuthorizationPage />}
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePageScreen />}
+          element={<FilmPage films={films} myFilms={myFilms} />}
         />
         <Route
           path={AppRoute.MyList}
@@ -37,7 +46,9 @@ function App({title, genre, year}: MainProp): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyListScreen/>
+              <MyListPage
+                myFilms={myFilms}
+              />
             </PrivateRoute>
           }
         />
@@ -47,21 +58,22 @@ function App({title, genre, year}: MainProp): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <AddReviewScreen />
+              <AddReviewPage films={films} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen />}
+          element={<PlayerPage films={films}/>}
         />
         <Route
           path="*"
-          element={<NotFoundScreen />}
+          element={<NotFoundPage />}
         />
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 export default App;
