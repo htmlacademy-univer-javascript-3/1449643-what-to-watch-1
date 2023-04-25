@@ -16,9 +16,7 @@ function MainPage ({films, myFilms}: MainFilmCardProp): JSX.Element {
         myFilms={myFilms}
       />
       <div className="page-content">
-        <CatalogFilms
-          films={films}
-        />
+      <CatalogFilms/>
         <Footer />
       </div>
     </>
