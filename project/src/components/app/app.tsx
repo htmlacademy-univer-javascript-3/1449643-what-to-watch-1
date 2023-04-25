@@ -38,7 +38,15 @@ function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmPage films={films} myFilms={myFilms} />}
+          element={<FilmPage films={films} myFilms={myFilms} reviews={reviews}/>}
+        />
+        <Route
+          path={AppRoute.FilmDetails}
+          element={<FilmPage films={films} myFilms={myFilms} reviews={reviews} />}
+        />
+        <Route
+          path={AppRoute.FilmReviews}
+          element={<FilmPage films={films} myFilms={myFilms} reviews={reviews} />}
         />
         <Route
           path={AppRoute.MyList}
