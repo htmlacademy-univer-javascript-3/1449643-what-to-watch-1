@@ -3,6 +3,8 @@ import { filmsData } from './mocks/films';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { reviewsData } from './mocks/reviews';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 const favoriteFilmsData = filmsData.filter((film) => film.isFavorite );
 
@@ -12,10 +14,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      films = {filmsData}
-      reviews = {reviewsData}
-      myFilms = {favoriteFilmsData}
-    />
+        <Provider store = {store}>
+      <App
+        films = {filmsData}
+        reviews = {reviewsData}
+        myFilms = {favoriteFilmsData}
+      />
+    </Provider>
   </React.StrictMode>,
 );
