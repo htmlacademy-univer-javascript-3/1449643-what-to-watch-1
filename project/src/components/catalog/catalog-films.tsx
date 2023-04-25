@@ -3,10 +3,18 @@ import CatalogGenresList from './catalog-genres-list';
 import CatalogMoreBtn from './catalog-more-btn';
 import { GenreName } from '../../const';
 import { useAppSelector } from '../../hooks';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 function CatalogFilms(): JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
   const films = useAppSelector((state) => state.films);
+  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const GenreFilter: Record<GenreName, string> = {
     [GenreName.ALL_GENRES]: 'All genres',

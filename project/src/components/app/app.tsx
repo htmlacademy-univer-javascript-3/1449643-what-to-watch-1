@@ -20,6 +20,7 @@ type MainPageProp = {
 
 
 function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
+
   return (
     <BrowserRouter>
       <Routes>

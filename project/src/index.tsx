@@ -5,6 +5,10 @@ import ReactDOM from 'react-dom/client';
 import { reviewsData } from './mocks/reviews';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import ErrorMessage from './components/error-message/error-message';
+import { fetchFilmsAction } from './store/api-actions';
+
+store.dispatch(fetchFilmsAction());
 
 const favoriteFilmsData = filmsData.filter((film) => film.isFavorite );
 
@@ -15,6 +19,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
         <Provider store = {store}>
+        <ErrorMessage/>
       <App
         films = {filmsData}
         reviews = {reviewsData}
