@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {createAPI} from '../services/api';
 import {reducer} from './reducer';
+import ErrorMessage from './components/error-message/error-message';
 
 export const api = createAPI();
 

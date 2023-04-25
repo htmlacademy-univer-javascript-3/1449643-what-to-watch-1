@@ -57,3 +57,4 @@ export enum GenreName {
   SCI_FI = 'Sci-Fi',
   THRILLERS = 'Thrillers',
 }
+export const TIMEOUT_SHOW_ERROR = 2000;
