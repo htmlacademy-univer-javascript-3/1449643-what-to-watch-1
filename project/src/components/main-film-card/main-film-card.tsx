@@ -1,6 +1,8 @@
 import AddToFavoriteButton from '../film-card-buttons/add-to-favorite-button';
+import { AuthorizationStatus } from '../../const';
 import { Films } from '../../types/films';
-import Logo from '../logo/logo';
+import { useAppSelector } from '../../hooks';
+import UnauthorizedUserHeader from '../user-header/unauthorized-user-header';
 import PlayButton from '../film-card-buttons/play-button';
 import UserBlock from '../user-header/user-block';
 
@@ -11,7 +13,7 @@ type MainFilmInfoProp = {
 
 function MainFilmCard({films, myFilms}: MainFilmInfoProp) : JSX.Element {
   const firstFilm = films[0];
-
+  const isUserAuthorized = useAppSelector((state) => state.authorizationStatus);
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -21,7 +23,7 @@ function MainFilmCard({films, myFilms}: MainFilmInfoProp) : JSX.Element {
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header film-card__head">
-        <Logo />
+      {(isUserAuthorized === AuthorizationStatus.Auth) ? <UserBlock /> : <UnauthorizedUserHeader/>}
 
         <UserBlock />
       </header>
