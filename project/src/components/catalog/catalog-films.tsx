@@ -1,16 +1,12 @@
-import { Films } from '../../types/films';
 import FilmCard from '../film-card/film-card';
 import CatalogGenresList from './catalog-genres-list';
 import CatalogMoreBtn from './catalog-more-btn';
 import { GenreName } from '../../const';
 import { useAppSelector } from '../../hooks';
 
-type FilmsCatalogProp = {
-  films: Films[];
-}
-
-function CatalogFilms({films}: FilmsCatalogProp): JSX.Element {
+function CatalogFilms(): JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
+  const films = useAppSelector((state) => state.films);
 
   const GenreFilter: Record<GenreName, string> = {
     [GenreName.ALL_GENRES]: 'All genres',
