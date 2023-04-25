@@ -1,7 +1,6 @@
 import AddReviewPage from '../../pages/add-review-page/add-review-page';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import AuthorizationPage from '../../pages/authorization-page/authorization-page';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Films } from '../../types/films';
 import MainPage from '../../pages/main-page/main-page';
 import FilmPage from '../../pages/film-page/film-page';
@@ -10,6 +9,8 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import PrivateRoute from '../private-route/private-route';
 import { Reviews } from '../../types/reviews';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
 
 type MainPageProp = {
@@ -20,6 +21,7 @@ type MainPageProp = {
 
 
 function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <BrowserRouter>
@@ -53,8 +55,8 @@ function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            authorizationStatus={authorizationStatus}
+                        >
               <MyListPage
                 myFilms={myFilms}
               />
@@ -65,8 +67,8 @@ function App({films, reviews, myFilms}: MainPageProp): JSX.Element {
           path={AppRoute.AddReview}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            authorizationStatus={authorizationStatus}
+                        >
               <AddReviewPage films={films} />
             </PrivateRoute>
           }

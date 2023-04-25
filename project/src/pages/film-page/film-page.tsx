@@ -1,5 +1,5 @@
 import AddToFavoriteButton from '../../components/film-card-buttons/add-to-favorite-button';
-import CatalogLikeThis from '../../components/catalog-like-this/catalog-like-this';
+import CatalogLikeThis from '../../components/catalog/catalog-like-this';
 import { Films } from '../../types/films';
 //import FilmCardNav from '../../components/film-nav/film-card-tabs';
 import FilmNavDetails from '../../components/film-tabs/film-tab-details';

@@ -6,9 +6,10 @@ import { reviewsData } from './mocks/reviews';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import ErrorMessage from './components/error-message/error-message';
-import { fetchFilmsAction } from './store/api-actions';
+import { fetchFilmsAction, checkAuthAction } from './store/api-actions';
 
 store.dispatch(fetchFilmsAction());
+store.dispatch(checkAuthAction());
 
 const favoriteFilmsData = filmsData.filter((film) => film.isFavorite );
 
