@@ -5,7 +5,7 @@ type DetailsProp = {
   films: Films[];
 }
 
-function FilmNavDetails({films}: DetailsProp): JSX.Element {
+function FilmTabDetails({films}: DetailsProp): JSX.Element {  
   const filmChoosed = useFilmChoosed(films);
   return (
     <div className="film-card__text film-card__row">
@@ -20,10 +20,7 @@ function FilmNavDetails({films}: DetailsProp): JSX.Element {
             {filmChoosed?.starring.map((actor, id) => {
               const keyValue = `${id}-${actor}`;
               return(
-                <>
-                  <span key={keyValue}>{actor}</span>
-                  <br/>
-                </>
+                <span style={{display: 'block'}}key={keyValue}>{actor}</span>
               );
             })}
           </span>
@@ -48,4 +45,4 @@ function FilmNavDetails({films}: DetailsProp): JSX.Element {
   );
 }
 
-export default FilmNavDetails;
+export default FilmTabDetails;

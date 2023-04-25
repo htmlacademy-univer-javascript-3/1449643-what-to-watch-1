@@ -2,9 +2,9 @@ import AddToFavoriteButton from '../../components/film-card-buttons/add-to-favor
 import CatalogLikeThis from '../../components/catalog-like-this/catalog-like-this';
 import { Films } from '../../types/films';
 //import FilmCardNav from '../../components/film-nav/film-card-tabs';
-import FilmNavDetails from '../../components/film-nav/film-nav-details';
-import FilmNavOverview from '../../components/film-nav/film-nav-overview';
-import FilmNavReviews from '../../components/film-nav/film-nav-reviews';
+import FilmNavDetails from '../../components/film-tabs/film-tab-details';
+import FilmNavOverview from '../../components/film-tabs/film-tab-overview';
+import FilmNavReviews from '../../components/film-tabs/film-tab-reviews';
 import Footer from '../../components/footer/footer';
 import { Link, useParams } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
@@ -137,8 +137,8 @@ function MoviePageScreen({films, myFilms, reviews}: MoviePageProp): JSX.Element 
       </section>
 
       <div className="page-content">
-        <CatalogLikeThis />
-        <Footer />
+      <CatalogLikeThis films={films}/>
+              <Footer />
       </div>
     </>
   );
